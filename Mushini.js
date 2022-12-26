@@ -7,7 +7,7 @@
 使用声明：️此脚本仅供学习与交流，
         请勿转载与贩卖！️️️
 群1077223830
-*******************************
+*******************************/
 [rewrite_local]
 ^http[s]?:\/\/api-account.kinemasters.com\/v2\/user\/subscribe.+$ url script-response-body kinemasters.js
 [mitm] 
@@ -21,7 +21,6 @@ Surge
 [MITM]
 hostname = *.kinemasters.*
 
-*******************************/
 var obj = JSON.parse($response.body);
     obj.isSubscribed= true;
     $done({body: JSON.stringify(obj)});
