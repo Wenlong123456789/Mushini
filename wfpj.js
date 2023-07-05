@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/api\.wfdata\.club\/v1\/user\/homePageInfo|https?:\/\/fengapp6\.wfdata\.club\/vip\/vip-dark\/vip-icon\.svg.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/威锋破解.js
+^https?:\/\/api\.wfdata\.club\/v1\/user\/homePageInfo|https?:\/\/fengapp6\.wfdata\.club\/vip\/vip-dark\/vip-icon\.svg.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/wfpj.js
 
 
 [mitm]
