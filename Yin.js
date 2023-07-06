@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/pay\.camoryapps\.com\/appPay\/api\/user\/info\/tokenLogin.*? url script-response-body Yin.js
+^https?:\/\/pay\.camoryapps\.com\/appPay\/api\/user\/info\/tokenLogin.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/Yin.js
 
 
 [mitm]
