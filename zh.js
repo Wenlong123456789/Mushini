@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/103\.41\.167\.235.*?.*? url script-response-body zh.js
+^https?:\/\/103\.41\.167\.235.*?.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/zh.js
 
 
 [mitm]
