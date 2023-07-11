@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/api-service\.chanmama\.com\/v1\/user\/info|https?:\/\/api-service\.chanmama\.com\/v1\/vip\/order\/getRestPriceTrans|https?:\/\/api-service\.chanmama\.com\/v1\/douyin\/aweme\/topic\/freeCount|https?:\/\/api-service\.chanmama\.com.*?.*? url script-response-body ds.js
+^https?:\/\/api-service\.chanmama\.com\/v1\/user\/info|https?:\/\/api-service\.chanmama\.com\/v1\/vip\/order\/getRestPriceTrans|https?:\/\/api-service\.chanmama\.com\/v1\/douyin\/aweme\/topic\/freeCount|https?:\/\/api-service\.chanmama\.com.*?.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/ds.js
 
 
 [mitm]
