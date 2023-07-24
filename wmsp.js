@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/www\.wanmouvideo\.com.*?.*? url script-response-body wmap.js
+^https?:\/\/www\.wanmouvideo\.com.*?.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/wmsp.js
 
 
 [mitm]
