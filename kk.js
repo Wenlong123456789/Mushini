@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/kkyun\.com\/api\/numbers\/user.*? url script-response-body kk.js
+^https?:\/\/kkyun\.com\/api\/numbers\/user.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/kk.js
 
 
 [mitm]
