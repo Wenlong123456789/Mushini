@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/app\.czjkxitong\.cn\/user\/getUserInfoByUid|https?:\/\/app\.czjkxitong\.cn\/getConfig.*? url script-response-body still.js
+^https?:\/\/app\.czjkxitong\.cn\/user\/getUserInfoByUid|https?:\/\/app\.czjkxitong\.cn\/getConfig.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/STJK.js
 
 
 [mitm]
