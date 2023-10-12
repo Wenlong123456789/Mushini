@@ -16,12 +16,15 @@ hostname = www.wanmouvideo.com
 %¥
 *******************************/
 var body=$response.body;
-body = body.replace(/"vip\":\w+/g,'"vip":true');
-body = body.replace(/"term_day\":"\d+"/g,'"term_day":"99"');
+body = body.replace(/"is_alone_sale\":"\d"/g,'"is_alone_sale":"0"');
+body = body.replace(/"price_type\":"\d"/g,'"price_type":"1"');
+body = body.replace(/"price\":"\d+.\d+"/g,'"price":""');
+body = body.replace(/"line_price\":\w+/g,'"line_price":1');
+body = body.replace(/"term_type\":"\d+"/g,'"term_type":"1"');
+body = body.replace(/"is_try\":"\d"/g,'"is_try":"1"');
 body = body.replace(/"vip_free_see\":"\d"/g,'"vip_free_see":"1"');
+body = body.replace(/"is_user_like\":\w+/g,'"is_user_like":true');
+body = body.replace(/"is_collect\":\w+/g,'"is_collect":true');
 body = body.replace(/"svip\":\w+/g,'"svip":true');
 body = body.replace(/"svip_course\":\w+/g,'"svip_course":true');
-body = body.replace(/"good_vip_buy\":"\d"/g,'"good_vip_buy":"1"');
-body = body.replace(/"day\":"\d"/g,'"day":"9999"');
-body = body.replace(/"try_time\":"\d+"/g,'"try_time":"99999"');
 $done(body);
