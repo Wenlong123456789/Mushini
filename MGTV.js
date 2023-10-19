@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/nuc\.api\.mgtv\.com\/GetUserInfo|https?:\/\/me\.bz\.mgtv\.com\/v3\/module\/list|https?:\/\/homepage\.bz\.mgtv\.com\/v3\/user\/userInfo.*? url script-response-body MGTV.js
+^https?:\/\/nuc\.api\.mgtv\.com\/GetUserInfo|https?:\/\/me\.bz\.mgtv\.com\/v3\/module\/list|https?:\/\/homepage\.bz\.mgtv\.com\/v3\/user\/userInfo.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/MGTV.js
 
 
 [mitm]
