@@ -2,6 +2,6 @@
 host-keyword, openai, OpenAI
 host-suffix , identrust.com, OpenAI
 host-suffix , auth0.com, OpenAI
-host-suffix , api.revenuecat.com,
-host-suffix , ios.chat.openai.com,
-host-suffix , auth0.openai.com,
+host-suffix , api.revenuecat.com, OpenAI
+host-suffix , ios.chat.openai.com, OpenAI
+host-suffix , auth0.openai.com, OpenAI
