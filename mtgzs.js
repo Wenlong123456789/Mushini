@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/api\.posters\.meitu\.com\/center\/user_info\.json|https?:\/\/api-sub\.meitu\.com\/v2\/user\/vip_info_by_group\.json|https?:\/\/api\.account\.meitu\.com\/users\/show_current\.json|https?:\/\/webapi-pc\.meitu\.com\/v1\/ai_pic_text\/membership.*? url script-response-body mtgzs.js
+^https?:\/\/api\.posters\.meitu\.com\/center\/user_info\.json|https?:\/\/api-sub\.meitu\.com\/v2\/user\/vip_info_by_group\.json|https?:\/\/api\.account\.meitu\.com\/users\/show_current\.json|https?:\/\/webapi-pc\.meitu\.com\/v1\/ai_pic_text\/membership.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/mtgzs.js
 
 
 [mitm]
