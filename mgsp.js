@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/me\.bz\.mgtv\.com\/v3\/module\/list|https?:\/\/nuc\.api\.mgtv\.com\/GetUserInfo|https?:\/\/vip\.bz\.mgtv\.com\/client\/dynamic_entry|https?:\/\/homepage\.bz\.mgtv\.com\/v3\/user\/userInfo|https?:\/\/vipact3\.api\.mgtv\.com\/api\/v1\/app\/vip\/center\/user\/info|https?:\/\/vipact3\.api\.mgtv\.com\/api\/v1\/app\/vip\/center\/vip\/info|https?:\/\/credits\.bz\.mgtv\.com\/credits\/toast|https?:\/\/layer\.bz\.mgtv\.com\/layer\/conf|https?:\/\/vipact3\.api\.mgtv\.com\/api\/v1\/app\/vip\/center\/theme\/card|https?:\/\/vipact3\.api\.mgtv\.com\/api\/v1\/act\/vipcenter\/themecard\/set|https?:\/\/vip\.bz\.mgtv\.com\/client\/dynamic_entry|https?:\/\/mobile\.api\.mgtv\.com\/v8\/video\/getSource|https?:\/\/mobile\.api\.mgtv\.com\/v10\/video\/info.*? url script-response-body mgsp.js
+^https?:\/\/me\.bz\.mgtv\.com\/v3\/module\/list|https?:\/\/nuc\.api\.mgtv\.com\/GetUserInfo|https?:\/\/vip\.bz\.mgtv\.com\/client\/dynamic_entry|https?:\/\/homepage\.bz\.mgtv\.com\/v3\/user\/userInfo|https?:\/\/vipact3\.api\.mgtv\.com\/api\/v1\/app\/vip\/center\/user\/info|https?:\/\/vipact3\.api\.mgtv\.com\/api\/v1\/app\/vip\/center\/vip\/info|https?:\/\/credits\.bz\.mgtv\.com\/credits\/toast|https?:\/\/layer\.bz\.mgtv\.com\/layer\/conf|https?:\/\/vipact3\.api\.mgtv\.com\/api\/v1\/app\/vip\/center\/theme\/card|https?:\/\/vipact3\.api\.mgtv\.com\/api\/v1\/act\/vipcenter\/themecard\/set|https?:\/\/vip\.bz\.mgtv\.com\/client\/dynamic_entry|https?:\/\/mobile\.api\.mgtv\.com\/v8\/video\/getSource|https?:\/\/mobile\.api\.mgtv\.com\/v10\/video\/info.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/mgsp.js
 
 
 [mitm]
