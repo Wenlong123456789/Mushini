@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/fanyi-app\.baidu\.com\/transapp\/vipcenter\/user\/info|https?:\/\/fanyi-app\.baidu\.com\/transapp\/comment\/my.*? url script-response-body bday.js
+^https?:\/\/fanyi-app\.baidu\.com\/transapp\/vipcenter\/user\/info|https?:\/\/fanyi-app\.baidu\.com\/transapp\/comment\/my.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/bdfy.js
 
 
 [mitm]
