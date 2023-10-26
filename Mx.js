@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/api\.shaolinzen\.com\/user\/v1\/info.*? url script-response-body hx.js
+^https?:\/\/api\.shaolinzen\.com\/user\/v1\/info.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/Mx.js
 
 
 [mitm]
