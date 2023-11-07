@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/api\.ttsc\.juxiao123\.cn\/frontend\/account|https?:\/\/api\.ttsc\.juxiao123\.cn\/frontend\/vip\/packages\/all.*? url script-response-body sczx.js
+^https?:\/\/api\.ttsc\.juxiao123\.cn\/frontend\/account|https?:\/\/api\.ttsc\.juxiao123\.cn\/frontend\/vip\/packages\/all.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/sczx.js
 
 
 [mitm]
