@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/api-tools\.milkidc\.com\/plugin\.php.*? url script-response-body MD.js
+^https?:\/\/api-tools\.milkidc\.com\/plugin\.php.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/MD5.js
 
 
 [mitm]
