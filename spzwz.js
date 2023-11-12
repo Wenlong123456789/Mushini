@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/paperwork\.szshht\.cn\/api\/User\/getVipInfo|https?:\/\/paperwork\.szshht\.cn\/api\/System\/getVipPrice|https?:\/\/paperwork\.szshht\.cn\/api\/User\/getUserInfo.*? url script-response-body spzwz.js
+^https?:\/\/paperwork\.szshht\.cn\/api\/User\/getVipInfo|https?:\/\/paperwork\.szshht\.cn\/api\/System\/getVipPrice|https?:\/\/paperwork\.szshht\.cn\/api\/User\/getUserInfo.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/spzwz.js
 
 
 [mitm]
