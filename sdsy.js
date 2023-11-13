@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/watershandiana\.yunxiaoguo\.cn\/user\/info|https?:\/\/watershandiana\.yunxiaoguo\.cn\/waterVipGoods\/page.*? url script-response-body Addy.js
+^https?:\/\/watershandiana\.yunxiaoguo\.cn\/user\/info|https?:\/\/watershandiana\.yunxiaoguo\.cn\/waterVipGoods\/page.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/sdsy.js
 
 
 [mitm]
