@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt.*? url script-response-body Aixt.js
+^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/Aixt.js
 
 
 [mitm]
