@@ -1,3 +1,18 @@
-<?xml version="1" encoding="utf-8">
+<?xml version="1" encoding="utf-8"?>
 <config>
+	<DEFAULT>
+		<file type=3 local="files/comm.dat" name="comm.dat" hash_type=1 probability="100" scale="1">
+			<A hash="0AEE5282"/>
+			<B hash="F55C2156"/>
+		</file>
+	</DEFAULT>
+	<GAME hash_type=1 hash="58BE4B70">
+		<file type=2 local="files/mrpcs.data" name="mrpcs.data" hash_type=1 probability="100" scale="1">
+			<A hash="C3ADA437"/>
+			<B hash="E9529786"/>
+		</file>
+		<file type=3 local="files/tssmua.zip" name="tssmua.zip" hash_type=1 probability="100" scale="1">
+			<A hash="1C8710C6"/>
+		</file>
+	</GAME>
 </config>
