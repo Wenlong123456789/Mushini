@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/tieba\.baidu\.com\/mo\/q\/member\/memberRecharge|https?:\/\/mbd\.baidu\.com\/userx\/v1\/info\/get.*? url script-response-body bbbb.js
+^https?:\/\/tieba\.baidu\.com\/mo\/q\/member\/memberRecharge|https?:\/\/mbd\.baidu\.com\/userx\/v1\/info\/get.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/bbbbb.js
 
 
 [mitm]
