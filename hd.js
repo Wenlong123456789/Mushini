@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/user\.hundun\.cn\/dhy\/index.*? url script-response-body hd.js
+^https?:\/\/user\.hundun\.cn\/dhy\/index.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/hd.js
 
 
 [mitm]
