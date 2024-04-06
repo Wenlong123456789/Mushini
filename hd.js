@@ -11,7 +11,7 @@
 ^https?:\/\/course\.hundun\.cn\/.*?|^https?:\/\/user\.hundun\.cn\/.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/hd.js
 
 [mitm]
-hostname = user.hundun.cn
+hostname = course.hundun.cn,user.hundun.cn
 %¥
 *******************************/
 var body=$response.body;
