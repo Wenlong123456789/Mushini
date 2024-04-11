@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/mobile-new\.chinaeew\.cn\/v1\/order\/apple\/vip|https?:\/\/api\.map\.baidu\.com\/sdkcs\/verify.*? url script-response-body dzyj.js
+^https?:\/\/mobile-new\.chinaeew\.cn\/v1\/order\/apple\/vip|https?:\/\/api\.map\.baidu\.com\/sdkcs\/verify.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/dzyj.js
 
 
 [mitm]
