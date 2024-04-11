@@ -1,5 +1,5 @@
 /******************************
-⚠️如果放远程，请把FFF.js替换成运程链接⚠️
+⚠️如果放远程，请把ytts.js替换成运程链接⚠️
   🧚🏻‍♂️作者：🍡魔法师、木木🍡
   wx交流群：1077223830
 🫧脚本名称:亿图图示破解
@@ -8,11 +8,11 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/userapi\.edrawsoft\.cn.*?|https?:\/\/maxapi\.edrawsoft\.cn\/api\/oss\/*\/obj\/openrecord.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/ytts.js
+^https?:\/\/userapi\.edrawsoft\.cn.*?.*? url script-response-body ytts.js
 
 
 [mitm]
-hostname = userapi.edrawsoft.cn,maxapi.edrawsoft.cn
+hostname = userapi.edrawsoft.cn
 %¥
 *******************************/
 var body=$response.body;
