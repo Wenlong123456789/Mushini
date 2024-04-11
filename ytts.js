@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/userapi\.edrawsoft\.cn.*?|https?:\/\/maxapi\.edrawsoft\.cn\/api\/oss\/*\/obj\/openrecord.*? url script-response-body FFF.js
+^https?:\/\/userapi\.edrawsoft\.cn.*?|https?:\/\/maxapi\.edrawsoft\.cn\/api\/oss\/*\/obj\/openrecord.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/ytts.js
 
 
 [mitm]
