@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/userapi\.edrawsoft\.cn.*?.*? url script-response-body ytts.js
+^https?:\/\/userapi\.edrawsoft\.cn.*?.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/ytts.js
 
 
 [mitm]
