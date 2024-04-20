@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/bzpp2\.iwzbz\.com.*?.*? url script-response-body Wbpp.js
+^https?:\/\/bzpp2\.iwzbz\.com.*?.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/wzpp.js
 
 
 [mitm]
