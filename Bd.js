@@ -4,10 +4,7 @@
 *******************************/
 
 [rewrite_local]
-# 用户信息及VIP状态
-^https?:\/\/bd-api\.kuwo\.cn\/api\/ucenter\/users\/(pub\/35772808|login) url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/refs/heads/main/Bd.js
-# 广告配置
-^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/(advert\/config|global\/config\/vipEnter) url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/refs/heads/main/Bd.js
+^https?:\/\/bd-api\.kuwo\.cn\/api\/(ucenter\/users\/(pub\/35772808|login)|service\/(advert\/config|global\/config\/vipEnter)) url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/refs/heads/main/Bd.js
 
 [mitm]
 hostname = bd-api.kuwo.cn
