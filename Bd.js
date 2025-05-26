@@ -1,25 +1,42 @@
-// 波点音乐 Quantumult X 解锁配置 (修正版)
-// 更新时间：2024-01-20
-// GitHub：https://github.com/Wenlong123456789/Mushini
+/******************************
+⚠️请将脚本托管到GitHub后远程引用
+  🧚🏻‍♂️作者：Wenlong123456789
+🫧脚本名称: 波点音乐VIP解锁
+*******************************/
 
 [rewrite_local]
-# ======== 用户核心信息 ========
-^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/ucenter\/users\/pub\/\d+ url response-body "isVip":\d,? response-body "isVip":1,
-^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/ucenter\/users\/pub\/\d+ url response-body "vipType":\d,? response-body "vipType":1,
-^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/ucenter\/users\/pub\/\d+ url response-body "isVipBoolean":\w+ response-body "isVipBoolean":true
-
-# ======== 全类型VIP解锁 ========
-^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/ucenter\/users\/pub\/\d+ url response-body "payVipType":\d response-body "payVipType":2
-^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/ucenter\/users\/pub\/\d+ url response-body "isPayVipBoolean":\w+ response-body "isPayVipBoolean":true
-^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/ucenter\/users\/pub\/\d+ url response-body "isBigVipBoolean":\w+ response-body "isBigVipBoolean":true
-
-# ======== 永久有效期 ========
-^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/ucenter\/users\/pub\/\d+ url response-body "expireDate":\d+ response-body "expireDate":1893456000000
-^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/ucenter\/users\/pub\/\d+ url response-body "bigExpireDate":\d+ response-body "bigExpireDate":1893456000000
-
-# ======== 界面优化 ========
-^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/advert\/config url response-body "fristVipListBtn":\d+ response-body "fristVipListBtn":1
-^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/global\/config\/vipEnter url response-body "ipCity":"[^"]+" response-body "ipCity":"🪐银河系中心"
+^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/(ucenter\/users\/pub\/\d+|service\/(advert\/config|global\/config\/vipEnter)) url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/main/Bd.js
 
 [mitm]
 hostname = bd-api.kuwo.cn, 49.7.250.27
+
+*******************************/
+
+var body = $response.body;
+
+// ======== 核心VIP状态 ========
+body = body.replace(/"isVip":\d/g, '"isVip":1');
+body = body.replace(/"vipType":\d/g, '"vipType":1');
+body = body.replace(/"isVipBoolean":\w+/g, '"isVipBoolean":true');
+
+// ======== 支付相关VIP ========
+body = body.replace(/"payVipType":\d/g, '"payVipType":2');
+body = body.replace(/"isPayVipBoolean":\w+/g, '"isPayVipBoolean":true');
+body = body.replace(/"isBigVipBoolean":\w+/g, '"isBigVipBoolean":true');
+
+// ======== 有效期设置 ========
+const timestamp = "1893456000000"; // 2486-01-01
+body = body.replace(/"expireDate":\d+/g, `"expireDate":${timestamp}`);
+body = body.replace(/"bigExpireDate":\d+/g, `"bigExpireDate":${timestamp}`);
+body = body.replace(/"payExpireDate":\d+/g, `"payExpireDate":${timestamp}`);
+
+// ======== 界面显示优化 ========
+body = body.replace(/"fristVipListBtn":\d+/g, '"fristVipListBtn":1');
+body = body.replace(/"fristVipPlayBtn":\d+/g, '"fristVipPlayBtn":1');
+body = body.replace(/"ipCity":"[^"]+"/g, '"ipCity":"🪐三体星系"');
+
+// ======== 特殊字段修改 ========
+body = body.replace(/"nickname":"[^"]+"/g, '"nickname":"🦋魔法用户"');
+body = body.replace(/"redFlower":\d+/g, '"redFlower":999999');
+
+$done({body});
