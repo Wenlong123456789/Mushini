@@ -1,61 +1,42 @@
-/************************************
-* 名称：波点音乐VIP终极修正版
-* 作者：Wenlong123456789
-* 更新时间：2024-03-15
-* 支持：Quantumult X v1.4.5+
-************************************/
+[rewrite_local]
+^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/(api\/ucenter\/users\/pub\/35772808|api\/service\/advert\/config|api\/ucenter\/users\/login|api\/service\/global\/config\/vipEnter) url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/refs/heads/main/Bd.js
 
-// [核心重写规则]
-const rule = {
-  url: /^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/(ucenter\/users\/pub\/\d+|service\/(advert\/config|global\/config\/vipEnter))/,
-  handler: response => {
-    let body = response.body;
-    
-    // ====== 调试模式 ======
-    const debug = false; // 设为true查看日志
-    if (debug) console.log(`原始响应：${body}`);
+[mitm]
+hostname = bd-api.kuwo.cn, 49.7.250.27
+var body = $response.body;
 
-    // ====== VIP核心字段 ======
-    const replacements = [
-      { pattern: /"isVip":\d/, replace: '"isVip":1' },
-      { pattern: /"vipType":\d/, replace: '"vipType":1' },
-      { pattern: /"isVipBoolean":\w+/, replace: '"isVipBoolean":true' },
-      
-      // ====== 支付状态 ======
-      { pattern: /"payVipType":\d/, replace: '"payVipType":2' },
-      { pattern: /"isPayVipBoolean":\w+/, replace: '"isPayVipBoolean":true' },
-      { pattern: /"isBigVipBoolean":\w+/, replace: '"isBigVipBoolean":true' },
-      
-      // ====== 有效期设置 ======
-      { pattern: /"expireDate":\d+/g, replace: '"expireDate":1893456000000' },
-      { pattern: /"bigExpireDate":\d+/g, replace: '"bigExpireDate":1893456000000' },
-      { pattern: /"payExpireDate":\d+/g, replace: '"payExpireDate":1893456000000' },
-      
-      // ====== 界面优化 ======
-      { pattern: /"fristVipListBtn":\d+/, replace: '"fristVipListBtn":1' },
-      { pattern: /"fristVipPlayBtn":\d+/, replace: '"fristVipPlayBtn":1' },
-      { pattern: /"ipCity":"[^"]+"/, replace: '"ipCity":"🌌宇宙中心"' },
-      
-      // ====== 特殊字段 ======
-      { pattern: /"nickname":"[^"]+"/, replace: '"nickname":"🦋魔法用户"' },
-      { pattern: /"redFlower":\d+/, replace: '"redFlower":999999' }
-    ];
+// VIP基础权限激活
+body = body.replace(/"isVip\":\d/g, '"isVip":1');  // 普通VIP
+body = body.replace(/"vipType\":\d/g, '"vipType":1');
+body = body.replace(/"payVipType\":\d/g, '"payVipType":2'); // 付费VIP
+body = body.replace(/"actVipType\":\d/g, '"actVipType":2'); // 活动VIP
 
-    replacements.forEach(({ pattern, replace }) => {
-      body = body.replace(pattern, replace);
-    });
+// Boolean型权限开关
+const vipBools = ["isVipBoolean","isPayVipBoolean","isBigVipBoolean","isCtVipBoolean","isActVipBoolean"];
+vipBools.forEach(field => {
+  body = body.replace(new RegExp(`"${field}\":\\w+`, 'g'), `"${field}":true`);
+});
 
-    if (debug) console.log(`修改后：${body}`);
-    return { body };
-  }
-};
+// 有效期设置（2289年到期）
+const expireFields = ["expireDate","bigExpireDate","payExpireDate","ctExpireDate","actExpireDate","end","expireAt"];
+expireFields.forEach(field => {
+  body = body.replace(new RegExp(`"${field}\":\\d+`, 'g'), '"${field}":10079207147000');
+});
 
-// [模块导出]
-const config = {
-  rewrite: [rule],
-  mitm: {
-    hostnames: ['bd-api.kuwo.cn', '49.7.250.27']
-  }
-};
+// 功能解锁
+body = body.replace(/"status\":\d/g, '"status":1'); // 账户状态
+body = body.replace(/"redFlower\":\d/g, '"redFlower":99999'); // 虚拟货币
+body = body.replace(/"vipExpireTipDay\":\d+/g, '"vipExpireTipDay":999999999'); // 过期提醒
 
-typeof $done === 'function' ? $done(config) : config;
+// 界面定制
+body = body.replace(/"nickname\":\".*?\"/g, '"nickname":"🦋"'); // 修改昵称
+body = body.replace(/"ipCity\":\"\\w+\"/g, '"ipCity":"火星"');  // 伪造地理位置
+body = body.replace(/"fristVipBtnText\":\".*?\"/g, '"fristVipBtnText":""'); // 隐藏按钮文字
+
+// 首播特权
+const fristBtns = ["ListBtn","PlayBtn","SingleBtn"];
+fristBtns.forEach(btn => {
+  body = body.replace(new RegExp(`"fristVip${btn}\":\\d+`, 'g'), `"fristVip${btn}":1`);
+});
+
+$done(body);
