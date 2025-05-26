@@ -1,18 +1,14 @@
 /******************************
-⚠️若需远程使用，请替换MD.js为远程链接
+⚠️修复版：正则表达式精确匹配优化
   🧚🏻‍♂️作者：🍡魔法师、木木🍡
-  wx交流群：1077223830
-🫧脚本名称:波点音乐VIP解锁
-🫧建议配合Quantumult X使用
+🫧脚本名称:波点音乐VIP解锁修复版
 *******************************/
 
 [rewrite_local]
-# 用户信息相关接口
-^https?:\/\/bd-api\.kuwo\.cn\/api\/ucenter\/users\/(pub\/35772808|login) url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/refs/heads/main/Bd.js
-# 广告配置接口
-^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/advert\/config url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/refs/heads/main/Bd.js
-# VIP入口配置
-^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/global\/config\/vipEnter url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/refs/heads/main/Bd.js
+# 用户信息接口
+^https?:\/\/(bd-api\.kuwo\.cn|49\.7\.250\.27)\/api\/ucenter\/users\/(pub\/35772808|login) url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/refs/heads/main/Bd.js
+# 广告及VIP配置接口
+^https?:\/\/bd-api\.kuwo\.cn\/api\/service\/(advert\/config|global\/config\/vipEnter) url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/refs/heads/main/Bd.js
 
 [mitm]
 hostname = bd-api.kuwo.cn, 49.7.250.27
@@ -20,48 +16,76 @@ hostname = bd-api.kuwo.cn, 49.7.250.27
 
 var body = $response.body;
 
-// ================= VIP状态修改 =================
-body = body.replace(/"isVip\":\d/g, '"isVip":1');  // 强制VIP标识
-body = body.replace(/"vipType\":\d/g, '"vipType":1');  // VIP类型
-body = body.replace(/"isVipBoolean\":\w+/g, '"isVipBoolean":true');  // 布尔型VIP状态
+// ================= 关键修复点说明 =================
+// 1. 所有正则增加 \s* 适配JSON中可能的空格
+// 2. 数值类字段改用 \d+ 确保匹配多位数
+// 3. 对字符串型字段显式匹配引号
+// 4. 添加调试日志输出
 
-// ================= 付费VIP相关 =================
-body = body.replace(/"payVipType\":\d/g, '"payVipType":2');  // 付费VIP类型
-body = body.replace(/"isPayVipBoolean\":\w+/g, '"isPayVipBoolean":true');
+// ================= VIP状态强制激活 =================
+body = body.replace(/"isVip"\s*:\s*\d+/g, '"isVip":1');  // 原错误：未处理空格
+body = body.replace(/"vipType"\s*:\s*\d+/g, '"vipType":1');
+body = body.replace(/"isVipBoolean"\s*:\s*\w+/g, '"isVipBoolean":true');
 
-// ================= 签到状态篡改 =================
-body = body.replace(/"isSigned\":\d/g, '"isSigned":1');  // 伪装已签到
-body = body.replace(/"isSignedBoolean\":\w+/g, '"isSignedBoolean":true');
+// ================= 付费VIP类型修正 =================
+body = body.replace(/"payVipType"\s*:\s*\d+/g, '"payVipType":2');
 
-// ================= 各类VIP标识增强 =================
-body = body.replace(/"isBigVipBoolean\":\w+/g, '"isBigVipBoolean":true');  // 大会员
-body = body.replace(/"isCtVipBoolean\":\w+/g, '"isCtVipBoolean":true');    // CT会员
-body = body.replace(/"isActVipBoolean\":\w+/g, '"isActVipBoolean":true');  // 活动VIP
+// ================= 签到状态伪装 =================
+body = body.replace(/"isSigned"\s*:\s*\d+/g, '"isSigned":1');
+body = body.replace(/"isSignedBoolean"\s*:\s*\w+/g, '"isSignedBoolean":true');
 
-// ================= 有效期修改（2289年）=================
-const expireDate = 10079207147000;  // 时间戳对应2289-10-17
-body = body.replace(/"expireDate\":\d+/g, `"expireDate":${expireDate}`);
-body = body.replace(/"bigExpireDate\":\d+/g, `"bigExpireDate":${expireDate}`);
-body = body.replace(/"payExpireDate\":\d+/g, `"payExpireDate":${expireDate}`);
-body = body.replace(/"ctExpireDate\":\d+/g, `"ctExpireDate":${expireDate}`);
-body = body.replace(/"actExpireDate\":\d+/g, `"actExpireDate":${expireDate}`);
-body = body.replace(/"end\":\d+/g, `"end":${expireDate}`);
-body = body.replace(/"expireAt\":\d+/g, `"expireAt":${expireDate}`);
+// ================= 全类型VIP标识 =================
+const vipBooleanFields = [
+  "isBigVipBoolean", "isCtVipBoolean", 
+  "isActVipBoolean", "isPayVipBoolean"
+];
+vipBooleanFields.forEach(field => {
+  body = body.replace(
+    new RegExp(`"${field}"\\s*:\\s*\\w+`, "g"),
+    `"${field}":true`
+  );
+});
 
-// ================= 资源数值修改 =================
-body = body.replace(/"redFlower\":\d+/g, '"redFlower":99999');  // 红花数量
-body = body.replace(/"vipExpireTipDay\":\d+/g, '"vipExpireTipDay":999999999');  // 过期提示天数
+// ================= 时间戳统一处理 =================
+const expireTimestamp = 10079207147000;  // 2289-10-17
+const dateFields = [
+  "expireDate", "bigExpireDate", "payExpireDate",
+  "ctExpireDate", "actExpireDate", "end", "expireAt"
+];
+dateFields.forEach(field => {
+  // 同时匹配数值型和字符串型时间戳（如 "expireDate":"1630000000"）
+  body = body.replace(
+    new RegExp(`"${field}"\\s*:\\s*("?)\\d+("?)`, "g"),
+    `"$field":$1${expireTimestamp}$2`
+  );
+});
 
-// ================= 界面显示控制 =================
-body = body.replace(/"fristVipListBtn\":\d+/g, '"fristVipListBtn":1');  // VIP列表按钮
-body = body.replace(/"fristVipPlayBtn\":\d+/g, '"fristVipPlayBtn":1');  // 播放按钮
-body = body.replace(/"fristVipSingleBtn\":\d+/g, '"fristVipSingleBtn":1');  // 单曲按钮
-body = body.replace(/"fristVipBtnText\":\".*?\"/g, '"fristVipBtnText":""');  // 清空按钮文字
+// ================= 资源数值修正 =================
+body = body.replace(/"redFlower"\s*:\s*\d+/g, '"redFlower":99999');  // 原错误：仅匹配单数字
+body = body.replace(/"vipExpireTipDay"\s*:\s*\d+/g, '"vipExpireTipDay":999999999');
 
-// ================= 账户基础信息 =================
-body = body.replace(/"status\":\d/g, '"status":1');  // 账户状态激活
-body = body.replace(/"nickname\":\".*?\"/g, '"nickname":"🦋"');  // 昵称修改
-body = body.replace(/"ipCity\":\"\\w+\"/g, '"ipCity":"火星"');  // IP归属地伪装
-body = body.replace(/"actVipType\":\d/g, '"actVipType":2');  // 活动VIP类型
+// ================= 界面元素控制 =================
+const buttonRules = [
+  { field: "fristVipListBtn", val: 1 },
+  { field: "fristVipPlayBtn", val: 1 },
+  { field: "fristVipSingleBtn", val: 1 }
+];
+buttonRules.forEach(rule => {
+  body = body.replace(
+    new RegExp(`"${rule.field}"\\s*:\\s*\\d+`, "g"),
+    `"${rule.field}":${rule.val}`
+  );
+});
+body = body.replace(/"fristVipBtnText"\s*:\s*".*?"/g, '"fristVipBtnText":""');
+
+// ================= 账户信息伪装 =================
+body = body.replace(/"status"\s*:\s*\d+/g, '"status":1');
+body = body.replace(/"nickname"\s*:\s*".*?"/g, '"nickname":"🦋"');
+body = body.replace(/"ipCity"\s*:\s*"\w+"/g, '"ipCity":"火星"');
+body = body.replace(/"actVipType"\s*:\s*\d+/g, '"actVipType":2');
+
+// ================= 调试日志 =================
+// 取消注释以下代码以查看替换结果
+// console.log("Modified Body: " + body);
 
 $done(body);
