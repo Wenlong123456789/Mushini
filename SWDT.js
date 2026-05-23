@@ -8,7 +8,7 @@
 *******************************
 %¥
 [rewrite_local]
-^https?:\/\/mindline\.cn\/userSync.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/refs/heads/main/SWDT.js
+^https?:\/\/mindline\.cn\/userSync.*? url script-response-body https://raw.githubusercontent.com/Wenlong123456789/Mushini/e27cedaf6df388d9814a387f160f86c8ae696506/SWDT.js
 
 
 [mitm]
