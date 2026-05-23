@@ -16,7 +16,7 @@ hostname = mindline.cn
 %¥
 *******************************/
 var body=$response.body;
-body = body.replace(/"vipPeriod\":\d+/g,'"vipPeriod":1000');
+body = body.replace(/"vipPeriod\":\d+/g,'"vipPeriod":3767315344');
 body = body.replace(/"paid\":\w+/g,'"paid":true');
-body = body.replace(/"purchasedDate\":\d+/g,'"purchasedDate":10082679308');
+body = body.replace(/"purchasedDate\":\d+/g,'"purchasedDate":1779164945');
 $done(body);
